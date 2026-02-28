@@ -1,39 +1,8 @@
-name: Run Flask Bot
-
-on:
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 350
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Install ngrok
-        run: |
-          wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
-          tar -xvf ngrok-v3-stable-linux-amd64.tgz
-          sudo mv ngrok /usr/local/bin
-
-      - name: Start Flask App
-        run: |
-          python app.py &
-          sleep 10
-
-      - name: Start ngrok
-        env:
-          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-        run: |
-          ngrok config add-authtoken $NGROK_AUTHTOKEN
-          ngrok http 5000
+- name: Start Flask App
+  env:
+    VERIFY_TOKEN: ${{ secrets.VERIFY_TOKEN }}
+    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    PHONE_NUMBER_ID: ${{ secrets.PHONE_NUMBER_ID }}
+  run: |
+    python app.py &
+    sleep 10
