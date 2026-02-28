@@ -24,8 +24,8 @@ jobs:
 
       - name: Install ngrok
         run: |
-          wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
-          tar -xvf ngrok-v3-stable-linux-amd64.tgz
+          wget -q https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+          tar -xzf ngrok-v3-stable-linux-amd64.tgz
           sudo mv ngrok /usr/local/bin
 
       - name: Start Flask App
@@ -37,9 +37,15 @@ jobs:
           python app.py &
           sleep 15
 
-      - name: Start ngrok Tunnel
+      - name: Start ngrok and Print Public URL
         env:
           NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
         run: |
           ngrok config add-authtoken $NGROK_AUTHTOKEN
-          ngrok http 5000
+          ngrok http 5000 > /dev/null &
+          sleep 10
+          echo "🔗 Public URL:"
+          curl -s http://127.0.0.1:4040/api/tunnels | grep -o 'https://[0-9a-zA-Z.-]*\.ngrok-free.app'
+
+      - name: Keep Runner Alive
+        run: sleep 20000
