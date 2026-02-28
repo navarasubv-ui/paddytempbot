@@ -7,34 +7,30 @@ import numpy as np
 
 app = Flask(__name__)
 
-# ====== LOAD FROM ENVIRONMENT VARIABLES ======
+# ====== LOAD FROM ENVIRONMENT (GitHub Secrets or Local) ======
 VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN")
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
 PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID")
-# =============================================
-
-# ====== LOAD MODEL ONLY ONCE (IMPORTANT) ======
-model = tf.keras.models.load_model("keras_model.h5", compile=False)
-
-with open("labels.txt", "r") as f:
-    class_names = f.readlines()
-# ==============================================
+# ===============================================================
 
 DISEASE_MANAGEMENT = {
-    "Bacterial Leaf Blight": "📊 Diagnosis: Bacterial Leaf Blight\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Bacterial Leaf Blight (பாக்டீரியா இலை கருகல்) affect aagirukku.\n\n✅ Management:\nUrea use panratha kurainga. Field-la irukka water-a 3-4 days vadichidunga. 10 litre water-la Streptocycline 1g + Copper oxychloride 30g mix panni spray pannunga.",
-    
-    "Brown Spot": "📊 Diagnosis: Brown Spot\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Brown Spot (பழுப்பு புள்ளி நோய்) affect aagirukku.\n\n✅ Management:\nSoil-la potash sattu athigama podunga. Field-a weed illama vachikonga. Mancozeb 2.5 g/litre or Propiconazole 1 ml/litre of water-la mix panni spray pannunga.",
-    
-    "Healthy Rice Leaf": "📊 Diagnosis: Healthy Rice Leaf\n🎯 Accuracy: {accuracy:.1f}%\n\n✅ Unga crop healthy-a irukku! Regular-a field-a monitor pannunga. Correct-ana alavula fertilizers use pannunga. 🌿",
-    
-    "Leaf Blast": "📊 Diagnosis: Leaf Blast\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Leaf Blast (இலை குலை நோய்) affect aagirukku.\n\n✅ Management:\nExcess urea poduratha thavirthudunga. Varappu (bunds) clean-a vachikonga. Tricyclazole 75 WP 0.6 g/litre or Pseudomonas fluorescens 5 g/litre of water-la mix panni spray pannunga.",
-    
-    "Leaf scald": "📊 Diagnosis: Leaf Scald\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Leaf Scald (இலை கருகல் நோய்) affect aagirukku.\n\n✅ Management:\nAdarthiyaa nadavu seirathaiyum, excess urea podurathaiyum thavirthudunga. Hexaconazole or Propiconazole 1 ml/litre of water-la mix panni spray pannunga.",
-    
-    "Sheath Blight": "📊 Diagnosis: Sheath Blight\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Sheath Blight (இலை உறை கருகல் நோய்) affect aagirukku.\n\n✅ Management:\nPlants-ku naduvula correct-ana gap maintain pannunga. Thodarndhu thanneer thenguratha thavirthudunga. Validamycin 2 ml/litre or Hexaconazole 2 ml/litre of water-la mix panni thoorla (base) padura mathiri spray pannunga."
+    "Bacterial Leaf Blight": "⚠️ *Bacterial Leaf Blight (பாக்டீரியா இலை கருகல் நோய்)* symptoms theriyudhu.\n\n✅ *Management:*\nStreptomycin sulphate + Tetracycline combination (e.g., Streptocycline) @ 120g/acre + Copper oxychloride @ 500g/acre water-la mix panni thelikkavum.",
+    "Brown Spot": "⚠️ *Brown Spot (பழுப்பு புள்ளி நோய்)* affect aagirukku.\n\n✅ *Management:*\nMancozeb 2.0 g/litre or Edifenphos 1 ml/litre of water-la mix panni spray pannunga.",
+    "Healthy Rice Leaf": "🌿 Super! Unga nel payir (paddy crop) healthy-a irukku. Endha noyum illai. Nalla yield kidaikka vaazhthukkal!",
+    "Leaf Blast": "⚠️ *Leaf Blast (குலை நோய்)* symptoms irukku.\n\n✅ *Management:*\nTricyclazole 75 WP @ 200g/acre or Pseudomonas fluorescens @ 1kg/acre spray pannunga. Thanneer thengama paathukonga.",
+    "Leaf scald": "⚠️ *Leaf Scald (இலை கருகல் / வெளிறிய நோய்)* symptoms theriyudhu.\n\n✅ *Management:*\nHexaconazole 5 EC @ 2 ml/litre or Propiconazole 25 EC @ 1 ml/litre thanneer-la mix panni spray pannavum.",
+    "Sheath Blight": "⚠️ *Sheath Blight (இலை உறை அழுகல் நோய்)* affect aagirukku.\n\n✅ *Management:*\nCarbendazim 50 WP @ 200g/acre or Propiconazole 25 EC @ 200 ml/acre spray pannunga. Payir idaiveli (spacing) maintain pannavum."
 }
 
-def predict_paddy_disease(image_path):
+
+def predict_paddy_disease(image_path, model_path='keras_model.h5', labels_path='labels.txt'):
+    np.set_printoptions(suppress=True)
+
+    model = tf.keras.models.load_model(model_path, compile=False)
+
+    with open(labels_path, "r") as f:
+        class_names = f.readlines()
+
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     image = Image.open(image_path).convert("RGB")
@@ -49,11 +45,11 @@ def predict_paddy_disease(image_path):
     index = np.argmax(prediction)
     class_name = class_names[index].strip()
 
-    # Remove any numeric prefix from the labels (e.g., "0 Brown Spot" -> "Brown Spot")
     if " " in class_name:
         class_name = class_name.split(" ", 1)[1]
 
     confidence_score = prediction[0][index]
+
     return class_name, confidence_score
 
 
@@ -63,8 +59,9 @@ def verify():
     token = request.args.get("hub.verify_token")
     challenge = request.args.get("hub.challenge")
 
-    if mode == "subscribe" and token == VERIFY_TOKEN:
-        return challenge, 200
+    if mode and token:
+        if mode == "subscribe" and token == VERIFY_TOKEN:
+            return challenge, 200
 
     return "Verification failed", 403
 
@@ -74,40 +71,39 @@ def webhook():
     data = request.json
 
     try:
-        # Navigate through the WhatsApp webhook payload
         message = data["entry"][0]["changes"][0]["value"]["messages"][0]
         sender = message["from"]
 
         if message["type"] == "image":
             media_id = message["image"]["id"]
-            
-            # Send an immediate processing message so the user knows it's working
-            send_whatsapp_message(sender, "🔍 Image received! Analyzing...")
-
-            # Get image URL and download it
             media_url = get_media_url(media_id)
+
             download_image(media_url, media_id)
             local_image_path = f"images/{media_id}.jpg"
 
-            # Predict disease
-            predicted_class, confidence = predict_paddy_disease(local_image_path)
-            accuracy_percent = confidence * 100
+            send_whatsapp_message(sender, "🔍 Image received! Analyzing paddy leaf... Please wait.")
 
-            # Format the reply using our Tanglish dictionary
-            if predicted_class in DISEASE_MANAGEMENT:
-                reply_text = DISEASE_MANAGEMENT[predicted_class].format(accuracy=accuracy_percent)
-            else:
-                # Fallback in case the model predicts something outside the dictionary
-                reply_text = (
-                    f"📊 Diagnosis: {predicted_class}\n"
-                    f"🎯 Accuracy: {accuracy_percent:.1f}%\n\n"
-                    f"⚠️ Please consult an agriculture expert for management."
+            try:
+                predicted_class, confidence = predict_paddy_disease(local_image_path)
+
+                advice = DISEASE_MANAGEMENT.get(
+                    predicted_class,
+                    "Diagnosis complete, but specific management not found. Please consult an expert."
                 )
 
-        else:
-            reply_text = "🌱 Please send a clear paddy leaf image."
+                reply_text = (
+                    f"📊 *Diagnosis:* {predicted_class}\n"
+                    f"🎯 *Accuracy:* {confidence * 100:.1f}%\n\n"
+                    f"{advice}"
+                )
 
-        # Send the final result back to the user
+            except Exception as e:
+                print("Prediction Error:", e)
+                reply_text = "Sorry, model process pandrathula oru error vandhuduchu. Please try again with a clear image."
+
+        else:
+            reply_text = "🌱 Please send a clear image of the paddy leaf to detect disease."
+
         send_whatsapp_message(sender, reply_text)
 
     except Exception as e:
