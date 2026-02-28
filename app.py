@@ -21,17 +21,17 @@ with open("labels.txt", "r") as f:
 # ==============================================
 
 DISEASE_MANAGEMENT = {
-    "Bacterial Leaf Blight": "Reduce urea (nitrogen) fertilizer. Drain field water for 3-4 days to stop the spread. Spray Streptocycline (1g) + Copper oxychloride (30g) in 10L of water.\n\nயூரியா இடுவதைக் குறைக்கவும். நோய் பரவலைத் தடுக்க வயலில் உள்ள நீரை 3-4 நாட்களுக்கு வடிக்கவும். 10 லிட்டர் தண்ணீருக்கு 1 கிராம் ஸ்ட்ரெப்டோசைக்ளின் + 30 கிராம் காப்பர் ஆக்ஸிகுளோரைடு கலந்து தெளிக்கவும்.",
+    "Bacterial Leaf Blight": "📊 Diagnosis: Bacterial Leaf Blight\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Bacterial Leaf Blight (பாக்டீரியா இலை கருகல்) affect aagirukku.\n\n✅ Management:\nUrea use panratha kurainga. Field-la irukka water-a 3-4 days vadichidunga. 10 litre water-la Streptocycline 1g + Copper oxychloride 30g mix panni spray pannunga.",
     
-    "Brown Spot": "Ensure proper soil nutrition, especially potash. Keep the field weed-free. Spray Mancozeb (2.5g/Liter) or Propiconazole (1ml/Liter).\n\nமண்ணின் ஊட்டச்சத்தை மேம்படுத்தவும், குறிப்பாக சாம்பல் சத்து (Potash) இடுங்கள். வயலை களைகளின்றி வைக்கவும். 1 லிட்டர் தண்ணீருக்கு 2.5 கிராம் மான்கோசெப் அல்லது 1 மி.லி புரொப்பிகோனசோல் கலந்து தெளிக்கவும்.",
+    "Brown Spot": "📊 Diagnosis: Brown Spot\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Brown Spot (பழுப்பு புள்ளி நோய்) affect aagirukku.\n\n✅ Management:\nSoil-la potash sattu athigama podunga. Field-a weed illama vachikonga. Mancozeb 2.5 g/litre or Propiconazole 1 ml/litre of water-la mix panni spray pannunga.",
     
-    "Healthy Rice Leaf": "Your crop is healthy! Continue regular field monitoring and maintain balanced fertilizers. Keep up the good work! 🌿\n\nஉங்கள் நெற்பயிர் ஆரோக்கியமாக உள்ளது! தொடர்ந்து வயலை கண்காணிக்கவும் மற்றும் சரியான அளவில் உரங்களை இடவும். வாழ்த்துகள்! 🌿",
+    "Healthy Rice Leaf": "📊 Diagnosis: Healthy Rice Leaf\n🎯 Accuracy: {accuracy:.1f}%\n\n✅ Unga crop healthy-a irukku! Regular-a field-a monitor pannunga. Correct-ana alavula fertilizers use pannunga. 🌿",
     
-    "Leaf Blast": "Avoid excess urea and delay top-dressing. Keep the field bunds clean. Spray Tricyclazole 75 WP (0.6g/Liter) or Pseudomonas fluorescens (5g/Liter).\n\nஅதிகப்படியான யூரியா இடுவதைத் தவிர்க்கவும். வரப்புகளை சுத்தமாக வைக்கவும். 1 லிட்டர் தண்ணீருக்கு 0.6 கிராம் ட்ரைசைக்லாசோல் அல்லது 5 கிராம் சூடோமோனாஸ் கலந்து தெளிக்கவும்.",
+    "Leaf Blast": "📊 Diagnosis: Leaf Blast\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Leaf Blast (இலை குலை நோய்) affect aagirukku.\n\n✅ Management:\nExcess urea poduratha thavirthudunga. Varappu (bunds) clean-a vachikonga. Tricyclazole 75 WP 0.6 g/litre or Pseudomonas fluorescens 5 g/litre of water-la mix panni spray pannunga.",
     
-    "Leaf scald": "Use disease-free seeds for the next season. Avoid thick planting and high nitrogen. Spray Hexaconazole or Propiconazole (1ml/Liter) if symptoms are severe.\n\nஅடர்த்தியாக நடவு செய்வதையும், அதிக யூரியா இடுவதையும் தவிர்க்கவும். நோய் தீவிரமாக இருந்தால் 1 லிட்டர் தண்ணீருக்கு 1 மி.லி ஹெக்ஸாகோனசோல் அல்லது புரொப்பிகோனசோல் கலந்து தெளிக்கவும்.",
+    "Leaf scald": "📊 Diagnosis: Leaf Scald\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Leaf Scald (இலை கருகல் நோய்) affect aagirukku.\n\n✅ Management:\nAdarthiyaa nadavu seirathaiyum, excess urea podurathaiyum thavirthudunga. Hexaconazole or Propiconazole 1 ml/litre of water-la mix panni spray pannunga.",
     
-    "Sheath Blight": "Maintain proper spacing between plants. Avoid continuous waterlogging. Spray Validamycin (2ml/Liter) or Hexaconazole (2ml/Liter) aiming at the base of the plant.\n\nபயிர்களுக்கு இடையே சரியான இடைவெளியை பராமரிக்கவும். வயலில் தொடர்ந்து தண்ணீர் தேங்குவதைத் தவிர்க்கவும். 1 லிட்டர் தண்ணீருக்கு 2 மி.லி வேலிடமைசின் அல்லது ஹெக்ஸாகோனசோல் கலந்து தூரில் படும்படி தெளிக்கவும்."
+    "Sheath Blight": "📊 Diagnosis: Sheath Blight\n🎯 Accuracy: {accuracy:.1f}%\n\n⚠️ Sheath Blight (இலை உறை கருகல் நோய்) affect aagirukku.\n\n✅ Management:\nPlants-ku naduvula correct-ana gap maintain pannunga. Thodarndhu thanneer thenguratha thavirthudunga. Validamycin 2 ml/litre or Hexaconazole 2 ml/litre of water-la mix panni thoorla (base) padura mathiri spray pannunga."
 }
 
 def predict_paddy_disease(image_path):
@@ -49,6 +49,7 @@ def predict_paddy_disease(image_path):
     index = np.argmax(prediction)
     class_name = class_names[index].strip()
 
+    # Remove any numeric prefix from the labels (e.g., "0 Brown Spot" -> "Brown Spot")
     if " " in class_name:
         class_name = class_name.split(" ", 1)[1]
 
@@ -73,34 +74,44 @@ def webhook():
     data = request.json
 
     try:
+        # Navigate through the WhatsApp webhook payload
         message = data["entry"][0]["changes"][0]["value"]["messages"][0]
         sender = message["from"]
 
         if message["type"] == "image":
             media_id = message["image"]["id"]
-            media_url = get_media_url(media_id)
+            
+            # Send an immediate processing message so the user knows it's working
+            send_whatsapp_message(sender, "🔍 Image received! Analyzing...")
 
+            # Get image URL and download it
+            media_url = get_media_url(media_id)
             download_image(media_url, media_id)
             local_image_path = f"images/{media_id}.jpg"
 
-            send_whatsapp_message(sender, "🔍 Image received! Analyzing...")
-
+            # Predict disease
             predicted_class, confidence = predict_paddy_disease(local_image_path)
-            advice = DISEASE_MANAGEMENT.get(predicted_class, "Consult expert.")
+            accuracy_percent = confidence * 100
 
-            reply_text = (
-                f"📊 Diagnosis: {predicted_class}\n"
-                f"🎯 Accuracy: {confidence * 100:.1f}%\n\n"
-                f"{advice}"
-            )
+            # Format the reply using our Tanglish dictionary
+            if predicted_class in DISEASE_MANAGEMENT:
+                reply_text = DISEASE_MANAGEMENT[predicted_class].format(accuracy=accuracy_percent)
+            else:
+                # Fallback in case the model predicts something outside the dictionary
+                reply_text = (
+                    f"📊 Diagnosis: {predicted_class}\n"
+                    f"🎯 Accuracy: {accuracy_percent:.1f}%\n\n"
+                    f"⚠️ Please consult an agriculture expert for management."
+                )
 
         else:
             reply_text = "🌱 Please send a clear paddy leaf image."
 
+        # Send the final result back to the user
         send_whatsapp_message(sender, reply_text)
 
     except Exception as e:
-        print("Error:", e)
+        print("Webhook Error:", e)
 
     return "OK", 200
 
@@ -142,4 +153,3 @@ def send_whatsapp_message(to, text):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-
