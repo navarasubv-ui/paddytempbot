@@ -14,12 +14,17 @@ PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID")
 # ===============================================================
 
 DISEASE_MANAGEMENT = {
-    "Bacterial Leaf Blight": "⚠️ *Bacterial Leaf Blight (பாக்டீரியா இலை கருகல் நோய்)* symptoms theriyudhu.\n\n✅ *Management:*\nStreptomycin sulphate + Tetracycline combination (e.g., Streptocycline) @ 120g/acre + Copper oxychloride @ 500g/acre water-la mix panni thelikkavum.",
-    "Brown Spot": "⚠️ *Brown Spot (பழுப்பு புள்ளி நோய்)* affect aagirukku.\n\n✅ *Management:*\nMancozeb 2.0 g/litre or Edifenphos 1 ml/litre of water-la mix panni spray pannunga.",
-    "Healthy Rice Leaf": "🌿 Super! Unga nel payir (paddy crop) healthy-a irukku. Endha noyum illai. Nalla yield kidaikka vaazhthukkal!",
-    "Leaf Blast": "⚠️ *Leaf Blast (குலை நோய்)* symptoms irukku.\n\n✅ *Management:*\nTricyclazole 75 WP @ 200g/acre or Pseudomonas fluorescens @ 1kg/acre spray pannunga. Thanneer thengama paathukonga.",
-    "Leaf scald": "⚠️ *Leaf Scald (இலை கருகல் / வெளிறிய நோய்)* symptoms theriyudhu.\n\n✅ *Management:*\nHexaconazole 5 EC @ 2 ml/litre or Propiconazole 25 EC @ 1 ml/litre thanneer-la mix panni spray pannavum.",
-    "Sheath Blight": "⚠️ *Sheath Blight (இலை உறை அழுகல் நோய்)* affect aagirukku.\n\n✅ *Management:*\nCarbendazim 50 WP @ 200g/acre or Propiconazole 25 EC @ 200 ml/acre spray pannunga. Payir idaiveli (spacing) maintain pannavum."
+    "Bacterial Leaf Blight": "⚠️ *Bacterial Leaf Blight (பாக்டீரியா இலை கருகல் நோய்)* symptoms are visible. / அறிகுறிகள் தெரிகின்றன.\n\n✅ *Chemical Management :*\nMix Streptomycin sulphate + Tetracycline combination (e.g., Streptocycline) @ 120g/acre + Copper oxychloride @ 500g/acre in water and spray.\n\n✅ *இரசாயன மேலாண்மை :*\nஸ்ட்ரெப்டோமைசின் சல்பேட் + டெட்ராசைக்ளின் கலவை (எ.கா: ஸ்ட்ரெப்டோசைக்ளின்) ஏக்கருக்கு 120 கிராம் மற்றும் காப்பர் ஆக்சி குளோரைடு ஏக்கருக்கு 500 கிராம் என்ற அளவில் தண்ணீரில் கலந்து தெளிக்கவும்.\n\n🌱 *Organic Management :*\nSpray 20% fresh cow dung extract or spray 0.5% Neem oil.\n\n🌱 *இயற்கை மேலாண்மை (Tamil):*\n20% புதிய சாணக் கரைசல் அல்லது 0.5% வேப்ப எண்ணெய் தெளிக்கவும்.",
+
+    "Brown Spot": "⚠️ *Brown Spot (பழுப்பு புள்ளி நோய்)* is affecting the plant. / பயிரை பாதித்துள்ளது.\n\n✅ *Chemical Management :*\nMix Mancozeb 2.0 g/litre or Edifenphos 1 ml/litre of water and spray.\n\n✅ *இரசாயன மேலாண்மை :*\nமேன்கோசெப் 2.0 கிராம்/லிட்டர் அல்லது எடிஃபென்ஃபோஸ் 1 மி.லி/லிட்டர் தண்ணீரில் கலந்து தெளிக்கவும்.\n\n🌱 *Organic Management :*\nSpray Pseudomonas fluorescens @ 1 kg/acre or 5% Neem Seed Kernel Extract (NSKE).\n\n🌱 *இயற்கை மேலாண்மை :*\nசூடோமோனாஸ் புளோரசன்ஸ் ஏக்கருக்கு 1 கிலோ அல்லது 5% வேப்பங்கொட்டை சாறு தெளிக்கவும்.",
+
+    "Healthy Rice Leaf": "🌿 Super! Your paddy crop is healthy. There is no disease. Best wishes for a good yield!\n\n🌿 சூப்பர்! உங்கள் நெற்பயிர் ஆரோக்கியமாக உள்ளது. எந்த நோயும் இல்லை. நல்ல மகசூல் கிடைக்க வாழ்த்துக்கள்!",
+
+    "Leaf Blast": "⚠️ *Leaf Blast (குலை நோய்)* symptoms are present. / அறிகுறிகள் உள்ளன.\n\n✅ *Chemical Management :*\nSpray Tricyclazole 75 WP @ 200g/acre. Avoid water stagnation in the field.\n\n✅ *இரசாயன மேலாண்மை :*\nட்ரைசைக்ளோசோல் 75 WP ஏக்கருக்கு 200 கிராம் தெளிக்கவும். வயலில் தண்ணீர் தேங்குவதைத் தவிர்க்கவும்.\n\n🌱 *Organic Management :*\nSpray Pseudomonas fluorescens @ 1 kg/acre. Avoid excessive application of nitrogen fertilizers.\n\n🌱 *இயற்கை மேலாண்மை :*\nசூடோமோனாஸ் புளோரசன்ஸ் ஏக்கருக்கு 1 கிலோ என்ற அளவில் தெளிக்கவும். தழைச்சத்து உரங்களை அதிகமாகப் பயன்படுத்துவதைத் தவிர்க்கவும்.",
+
+    "Leaf scald": "⚠️ *Leaf Scald (இலை கருகல் / வெளிறிய நோய்)* symptoms are visible. / அறிகுறிகள் தெரிகின்றன.\n\n✅ *Chemical Management :*\nMix Hexaconazole 5 EC @ 2 ml/litre or Propiconazole 25 EC @ 1 ml/litre in water and spray.\n\n✅ *இரசாயன மேலாண்மை :*\nஹெக்ஸாகோனசோல் 5 EC 2 மி.லி/லிட்டர் அல்லது ப்ரோபிகோனசோல் 25 EC 1 மி.லி/லிட்டர் தண்ணீரில் கலந்து தெளிக்கவும்.\n\n🌱 *Organic Management :*\nSpray 5% Neem Seed Kernel Extract (NSKE) or 3% Neem oil. Maintain proper plant spacing.\n\n🌱 *இயற்கை மேலாண்மை :*\n5% வேப்பங்கொட்டை சாறு அல்லது 3% வேப்ப எண்ணெய் தெளிக்கவும். பயிர்களுக்கு இடையே சரியான இடைவெளியை பராமரிக்கவும்.",
+
+    "Sheath Blight": "⚠️ *Sheath Blight (இலை உறை அழுகல் நோய்)* is affecting the plant. / பயிரை பாதித்துள்ளது.\n\n✅ *Chemical Management :*\nSpray Carbendazim 50 WP @ 200g/acre or Propiconazole 25 EC @ 200 ml/acre. Maintain proper plant spacing.\n\n✅ *இரசாயன மேலாண்மை :*\nகார்பென்டாசிம் 50 WP ஏக்கருக்கு 200 கிராம் அல்லது ப்ரோபிகோனசோல் 25 EC ஏக்கருக்கு 200 மி.லி தெளிக்கவும். பயிர்களுக்கு இடையே சரியான இடைவெளியை பராமரிக்கவும்.\n\n🌱 *Organic Management :*\nApply Pseudomonas fluorescens or Trichoderma viride @ 1 kg/acre mixed with 20 kg of farmyard manure to the soil.\n\n🌱 *இயற்கை மேலாண்மை :*\nசூடோமோனாஸ் புளோரசன்ஸ் அல்லது ட்ரைக்கோடெர்மா விரிடி ஏக்கருக்கு 1 கிலோ வீதம் 20 கிலோ தொழுஉரத்துடன் கலந்து வயலில் இடவும்."
 }
 
 
@@ -149,3 +154,4 @@ def send_whatsapp_message(to, text):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
